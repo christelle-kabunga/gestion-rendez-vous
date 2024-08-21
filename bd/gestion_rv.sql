@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 03, 2024 at 04:23 PM
+-- Generation Time: Aug 21, 2024 at 11:41 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,13 +24,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `affectation`
+-- Table structure for table `admin`
 --
 
-CREATE TABLE `affectation` (
+CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
-  `medecin` int(11) NOT NULL,
-  `jours` int(11) NOT NULL,
+  `username` text NOT NULL,
+  `password` text NOT NULL,
+  `telephone` text NOT NULL,
   `supprimer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -42,8 +43,6 @@ CREATE TABLE `affectation` (
 
 CREATE TABLE `consultation` (
   `id` int(11) NOT NULL,
-  `affectation` int(11) NOT NULL,
-  `description` text NOT NULL,
   `date_consultation` date NOT NULL,
   `supprimer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -51,25 +50,16 @@ CREATE TABLE `consultation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diagnostique`
+-- Table structure for table `informations`
 --
 
-CREATE TABLE `diagnostique` (
+CREATE TABLE `informations` (
   `id` int(11) NOT NULL,
-  `labo` int(11) NOT NULL,
-  `description` text NOT NULL,
+  `Administrateur` int(11) NOT NULL,
+  `titre` text NOT NULL,
+  `contenu` text NOT NULL,
+  `date` date NOT NULL,
   `supprimer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `jours`
---
-
-CREATE TABLE `jours` (
-  `id` int(11) NOT NULL,
-  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +76,6 @@ CREATE TABLE `medecins` (
   `prenom` text NOT NULL,
   `telephone` text NOT NULL,
   `adresse` text NOT NULL,
-  `photo` text NOT NULL,
   `supprimer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -112,7 +101,23 @@ CREATE TABLE `patients` (
 --
 
 INSERT INTO `patients` (`id`, `nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`, `supprimer`) VALUES
-(1, 'iosgjhe', 'iodhks', 'guiqerui', 'Masculin', '5567676', 'uisdui', 0);
+(1, 'iosgjhe ', 'iosgjhe ', 'iodhks ', 'Masculin', '5567676000000', 'uisdui ', 0),
+(2, 'irhkdr', 'hxjkf', 'jxvdcb', 'Feminin', '76768778998', 'jhvxj', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `prescription`
+--
+
+CREATE TABLE `prescription` (
+  `id` int(11) NOT NULL,
+  `description` text NOT NULL,
+  `rendez-vous` int(11) NOT NULL,
+  `consultation` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `supprimer` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -123,8 +128,10 @@ INSERT INTO `patients` (`id`, `nom`, `postnom`, `prenom`, `genre`, `telephone`, 
 CREATE TABLE `rendez_vous` (
   `id` int(11) NOT NULL,
   `patient` int(11) NOT NULL,
-  `affectation` int(11) NOT NULL,
-  `date` date NOT NULL
+  `medecin` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `etat` int(11) NOT NULL,
+  `supprimer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -141,31 +148,14 @@ CREATE TABLE `resultat_labo` (
   `supprimer` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `utilisateur`
---
-
-CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
-  `nom` text NOT NULL,
-  `postnom` text NOT NULL,
-  `prenom` text NOT NULL,
-  `telephone` text NOT NULL,
-  `adresse` text NOT NULL,
-  `photo` text NOT NULL,
-  `supprimer` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `affectation`
+-- Indexes for table `admin`
 --
-ALTER TABLE `affectation`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -175,15 +165,9 @@ ALTER TABLE `consultation`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `diagnostique`
+-- Indexes for table `informations`
 --
-ALTER TABLE `diagnostique`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `jours`
---
-ALTER TABLE `jours`
+ALTER TABLE `informations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -199,6 +183,12 @@ ALTER TABLE `patients`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `prescription`
+--
+ALTER TABLE `prescription`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `rendez_vous`
 --
 ALTER TABLE `rendez_vous`
@@ -211,19 +201,13 @@ ALTER TABLE `resultat_labo`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `utilisateur`
---
-ALTER TABLE `utilisateur`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `affectation`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `affectation`
+ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -233,15 +217,9 @@ ALTER TABLE `consultation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `diagnostique`
+-- AUTO_INCREMENT for table `informations`
 --
-ALTER TABLE `diagnostique`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `jours`
---
-ALTER TABLE `jours`
+ALTER TABLE `informations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -254,7 +232,13 @@ ALTER TABLE `medecins`
 -- AUTO_INCREMENT for table `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `prescription`
+--
+ALTER TABLE `prescription`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `rendez_vous`
@@ -266,12 +250,6 @@ ALTER TABLE `rendez_vous`
 -- AUTO_INCREMENT for table `resultat_labo`
 --
 ALTER TABLE `resultat_labo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `utilisateur`
---
-ALTER TABLE `utilisateur`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
