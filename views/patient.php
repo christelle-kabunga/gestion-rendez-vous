@@ -46,24 +46,24 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" class="card p-3" action="<?=$url?>" method="POST">
-                <div class="card-body">
-                  <div class="form-group">
+                <div class=" row card-body">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Nom</label>
                     <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: MUHINDO" name="nom"
                     <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['nom']; ?> <?php }?>">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">PostNom</label>
                     <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: MUHINDO" name="postnom"
                     <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['nom']; ?> <?php }?>">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">PreNom</label>
                     <input  autocomplete="off" required type="text" class="form-control" placeholder="EX: RAFIKI"
                                     name="prenom" <?php if (isset($_GET['edit'])) { ?>
                                     value="<?php echo $tab['postnom']; ?> <?php }?>">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                   <label>Disabled Result</label>
                   <select class="form-control select2" required id="" name="genre" autocomplete="off" style="width: 100%;">
                   <?php 
@@ -93,13 +93,13 @@
                                 ?>
                   </select>
                 </div>
-                  <div class="form-group">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Adresse</label>
                     <input autocomplete="off" required type="text" class="form-control" placeholder="Ex: Boutembo, Q. Kitatumba N° 16"
                                     name="adresse" <?php if (isset($_GET['edit'])) { ?>
                                     value="<?php echo $tab['adresse']; ?> <?php }?>">
                   </div>
-                  <div class="form-group">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Telephone</label>
                     <input autocomplete="off" required type="text" class="form-control" placeholder="Ex: 0000000000"
                                     name="telephone" <?php if (isset($_GET['edit'])) { ?>
@@ -109,7 +109,7 @@
                 <!-- /.card-body -->
 
                 <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                   <input type="submit" class="btn btn-primary w-100" name="valider" value="<?=$btn?>">
+                   <input type="submit" class="btn btn-dark w-100" name="valider" value="<?=$btn?>">
                  </div>
               </form>
             </div>
