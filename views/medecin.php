@@ -1,7 +1,7 @@
 <?php 
     include '../connexion/connexion.php';//Se connecter à la BD
     #Appel de la page qui permet de faire les affichages
-    require_once('../models/select/select-patient.php');
+    require_once('../models/select/select-medecin.php');
 ?> 
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <?php require_once('style.php'); ?>
-    <title>Patients</title>
+    <title>Medecins</title>
 </head>
 <body>
      <!-- Appel de menues  -->
@@ -22,7 +22,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1>Ajouter les Patients</h1>
+            <h1>Ajouter les Medecins</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -146,10 +146,10 @@
                   <td><?=$recup["adresse"];?></td>
                   <td><?=$recup["telephone"];?></td>
                   <td>
-                  <a href='patient.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
+                  <a href='medecin.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
                     class="bi bi-pencil-square"></i></a>
                   <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
-                  href='../models/delete/del-patient-post.php?idSup=<?=$recup['id'] ?>'
+                  href='../models/delete/del-medecin-post.php?idSup=<?=$recup['id'] ?>'
                     class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            
                   </td>
                 </tr>

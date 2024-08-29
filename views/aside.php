@@ -154,7 +154,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="../widgets.html" class="nav-link">
+            <a href="medecin.php" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Medecins
@@ -162,7 +162,7 @@
             </a>
           </li>
           <li class="nav-item ">
-            <a href="#" class="nav-link">
+            <a href="rendez-vous.php" class="nav-link">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                 Rendez-vous
