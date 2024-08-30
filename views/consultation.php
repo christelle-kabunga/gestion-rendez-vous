@@ -1,10 +1,16 @@
+<?php 
+    include '../connexion/connexion.php';//Se connecter à la BD
+    #Appel de la page qui permet de faire les affichages
+    require_once('../models/select/select-consultation.php');
+?> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <?php require_once('style.php'); ?>
-    <title>Patients</title>
+    <title>consultation</title>
 </head>
 <body>
      <!-- Appel de menues  -->
@@ -16,7 +22,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12">
-            <h1>Ajouter les Patients</h1>
+            <h1>Ajouter consultations</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -39,31 +45,19 @@
             ?>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
-                    <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                      </div>
-                    </div>
+              <form role="form" class="card p-3" action="<?=$url?>" method="POST" enctype="multipart/form-data">
+                <div class=" row card-body">
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                    <label for="exampleInputEmail1">Description</label>
+                    <textarea type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: consultation" name="description" >
+                      <?php if (isset($_GET['edit'])) { ?> <?php echo $tab['description']; ?> <?php }?> </textarea>
                   </div>
                 </div>
                 <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
+                  
+                <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
+                   <input type="submit" class="btn btn-dark w-100" name="valider" value="<?=$btn?>">
+                 </div>
               </form>
             </div>
             <!-- /.card -->
@@ -74,35 +68,35 @@
                 <thead>
                 <tr>
                   <th>N°</th>
-                  <th>nom</th>
-                  <th>Postnom</th>
-                  <th>prenom</th>
-                  <th>adresse</th>
+                  <th>Date</th>
+                  <th>Description</th>
                   <th>Actions</th>
+                
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                  $n=0;
+                  while($recup=$getData->fetch()){
+                    $n++;
+                  ?>
                 <tr>
-                  <td>Trident</td>
-                  <td>Internet
-                    Explorer 4.0
-                  </td>
-                  <td>Win 95+</td>
-                  <td> 4</td>
-                  <td>X</td>
+                  <td><?=$n;?></td>
+                  <td><?=$recup["date"];?></td>
+                  <td> <?=$recup["description"];?></td>
                   <td>
-                    <a href='enseignant.php?idet=<?=$idet['id'] ?>' class="btn btn-info btn-sm "><i
-                     class="fas fa-edit"></i></a>
-                     <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
-                      href='../models/delete/del-enseignant-post.php?idSupcat=<?=$idet['id'] ?>'
-                    class="btn btn-danger btn-sm "><i class="fas fa-delete"></i></a>
-                 </td>
+                  <a href='consultation.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
+                     class="fas fa-edit"></i></a></a>
+                  <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
+                  href='../models/delete/del-consultation-post.php?idSup=<?=$recup['id'] ?>'
+                    class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            
+                  </td>
                 </tr>
-                <tr>
-                  
+                <?php }?> 
               </table>
             </div>
             <!-- /.card-body -->
+          </div>
           </div>
       </div><!-- /.container-fluid -->
     </section>
