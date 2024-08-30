@@ -105,6 +105,12 @@
                                     name="telephone" <?php if (isset($_GET['edit'])) { ?>
                                     value="<?php echo $tab['telephone']; ?> <?php }?>">
                   </div>
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                    <label for="exampleInputEmail1">password</label>
+                    <input autocomplete="off" required type="text" class="form-control" placeholder="Ex: ******"
+                                    name="pwd" <?php if (isset($_GET['edit'])) { ?>
+                                    value="<?php echo $tab['pwd']; ?> <?php }?>">
+                  </div>
                 </div>
                 <!-- /.card-body -->
 
@@ -147,7 +153,7 @@
                   <td><?=$recup["telephone"];?></td>
                   <td>
                   <a href='patient.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
-                    class="bi bi-pencil-square"></i></a>
+                     class="fas fa-edit"></i></a>
                   <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
                   href='../models/delete/del-patient-post.php?idSup=<?=$recup['id'] ?>'
                     class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            

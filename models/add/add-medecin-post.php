@@ -9,6 +9,7 @@ if (isset($_POST['valider'])) {
     $genre = htmlspecialchars($_POST['genre']);
     $adresse = htmlspecialchars($_POST['adresse']);
     $telephone = htmlspecialchars($_POST['telephone']);
+    $pwd = htmlspecialchars($_POST['pwd']);
    
     // Check if the medecin already exists in the database
     $getpatDeplicant = $connexion->prepare("SELECT * FROM medecins WHERE telephone=? AND supprimer=?");
@@ -21,8 +22,8 @@ if (isset($_POST['valider'])) {
     } else {
         // Verify the validity of the phone number
         if (is_numeric($telephone)) {
-            $req = $connexion->prepare("INSERT INTO medecins( id,`nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`) VALUES (?,?,?,?,?,?,?)");
-            $resultat = $req->execute(['NULL', $nom, $postnom, $prenom, $genre, $telephone, $adresse]);
+            $req = $connexion->prepare("INSERT INTO medecins( id,`nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`,pwd) VALUES (?,?,?,?,?,?,?,?)");
+            $resultat = $req->execute(['NULL', $nom, $postnom, $prenom, $genre, $telephone, $adress,$pwd]);
 
             // If yes, the result variable will return true, so there was a registration
             if ($resultat == true) {

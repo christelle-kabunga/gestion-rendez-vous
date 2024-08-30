@@ -9,6 +9,7 @@ if(isset($_POST['valider'])&& !empty($_GET['edit'])){
     $genre = htmlspecialchars($_POST['genre']);
     $adresse = htmlspecialchars($_POST['adresse']);
     $telephone = htmlspecialchars($_POST['telephone']);
+    $pwd = htmlspecialchars($_POST['pwd']);
 
     $getmedecins = $connexion->prepare("SELECT * FROM medecins WHERE telephone=? AND supprimer=?");
     $getmedecins->execute([$medecins, 0]);
@@ -19,8 +20,8 @@ if(isset($_POST['valider'])&& !empty($_GET['edit'])){
     } else {
 
 if(is_numeric($telephone)){
-    $req=$connexion->prepare("UPDATE medecins SET nom=?, postnom=?, prenom=?, genre=?,adresse=?, telephone=? where id='$idmodif'");
-    $exe=$req->execute([$nom,$postnom,$prenom,$genre,$adresse,$telephone]);
+    $req=$connexion->prepare("UPDATE medecins SET nom=?, postnom=?, prenom=?, genre=?,adresse=?, telephone=?,pwd=? where id='$idmodif'");
+    $exe=$req->execute([$nom,$postnom,$prenom,$genre,$adresse,$telephone,$pwd]);
     if($exe==true){
         $msg="Modification réussie";
         $_SESSION['msg']=$msg;
