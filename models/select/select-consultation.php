@@ -1,7 +1,7 @@
 <?php
     if (isset($_GET['edit']) && !empty($_GET['edit'])){
      $id=$_GET['edit'];
-     $getDataMod=$connexion->prepare("SELECT * FROM consultation WHERE id=?");
+     $getDataMod=$connexion->prepare("SELECT consultation.description,consultation.id,rendez_vous.patient as idp,patients.nom as nompatient,patients.postnom as postnompatient,medecins.nom as nommedecin,medecins.postnom as postnommedecin,rendez_vous.medecin as idm,consultation.rendez FROM consultation,patients,medecins,rendez_vous WHERE rendez_vous.patient=patients.id AND medecins.id=rendez_vous.medecin and rendez_vous.id=consultation.rendez and consultation.supprimer=0 AND patients.supprimer=0 and medecins.supprimer=0 AND rendez_vous.supprimer and id=?");
      $getDataMod->execute([$id]);
      $tab=$getDataMod->fetch();
     

@@ -52,6 +52,31 @@
                     <textarea type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: consultation" name="description" >
                       <?php if (isset($_GET['edit'])) { ?> <?php echo $tab['description']; ?> <?php }?> </textarea>
                   </div>
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                  <label>patients</label>
+                  <select class="form-control select2" required id="" name="patient" autocomplete="off" 
+                  style="width: 100%;" value="<?php echo $tab['patient']; ?> ">
+                  <?php 
+                        $req=$connexion->prepare("SELECT * from patients where supprimer=0");
+                        $req->execute();
+                        while($rendez=$req->fetch()){ 
+                            $id=$rendez['id'];
+                                    
+                            ?>
+                             <?php if (isset($_GET['edit'])) { ?>
+                                <option <?php if($id==$tab['patient']) {?> selected value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom']; ?><?php } else { ?> value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom'];} ?></option>
+
+                             <?php } else {?>  
+
+                        <option value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom']; ?></option>
+                        <?php }?>
+                        <?php 
+
+                            }
+
+                            ?>
+                  </select>
+                </div>
                 </div>
                 <!-- /.card-body -->
                   

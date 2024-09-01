@@ -122,6 +122,7 @@
             <!-- /.card -->
             <div class="card">
             <!-- /.card-header -->
+            <h5 class="text-center">Liste des patients</h5>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -156,7 +157,7 @@
                      class="fas fa-edit"></i></a>
                   <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
                   href='../models/delete/del-patient-post.php?idSup=<?=$recup['id'] ?>'
-                    class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            
+                    class="btn btn-danger btn-sm "><i class="fas fa-trash"></i></a>                            
                   </td>
                 </tr>
                 <?php }?> 

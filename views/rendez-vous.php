@@ -113,7 +113,9 @@
             <!-- /.card -->
             <div class="card">
             <!-- /.card-header -->
+             <h5 class="text-center">Liste des rendez-vous</h5>
             <div class="card-body">
+              
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -138,10 +140,10 @@
                   <td><?=$recup["date"];?></td>
                   <td>
                   <a href='rendez-vous.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
-                    class="bi bi-pencil-square"></i></a>
+                    class="fas fa-edit"></i></a>
                   <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
                   href='../models/delete/del-rendez-vous-post.php?idSup=<?=$recup['id'] ?>'
-                    class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            
+                    class="btn btn-danger btn-sm "><i class="fas fa-trash"></i></a>                            
                   </td>
                 </tr>
                 <?php }?> 
