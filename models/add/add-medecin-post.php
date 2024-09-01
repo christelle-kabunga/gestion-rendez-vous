@@ -1,8 +1,14 @@
 <?php
 include('../../connexion/connexion.php');
-
+require_once ('../../fonctions/fonctions.php');
 if (isset($_POST['valider'])) {
-
+    // recuperer l'image
+$image = $_FILES['photo']['name'];
+$file = $_FILES['photo'];
+$destination = "img/" . basename($image);
+// fonction permettant de recuperer la photo
+    $newimage = RecuperPhoto($image, $file, $destination);
+    $description = htmlspecialchars($_POST['description']);
     $nom = htmlspecialchars($_POST['nom']);
     $postnom = htmlspecialchars($_POST['postnom']);
     $prenom = htmlspecialchars($_POST['prenom']);
@@ -22,8 +28,8 @@ if (isset($_POST['valider'])) {
     } else {
         // Verify the validity of the phone number
         if (is_numeric($telephone)) {
-            $req = $connexion->prepare("INSERT INTO medecins( id,`nom`, `postnom`, `prenom`, `genre`, `telephone`, `adresse`,pwd) VALUES (?,?,?,?,?,?,?,?)");
-            $resultat = $req->execute(['NULL', $nom, $postnom, $prenom, $genre, $telephone, $adress,$pwd]);
+            $req = $connexion->prepare("INSERT INTO medecins( id,`nom`, `postnom`, `prenom`, `genre`, `adresse`,`telephone`,photo,description,pwd) VALUES (?,?,?,?,?,?,?,?,?,?)");
+            $resultat = $req->execute(['NULL', $nom, $postnom, $prenom, $genre, $telephone, $adresse,$newimage,$description,$pwd]);
 
             // If yes, the result variable will return true, so there was a registration
             if ($resultat == true) {

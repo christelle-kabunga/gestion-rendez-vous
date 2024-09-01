@@ -3,6 +3,13 @@ include("../../connexion/connexion.php");
 
 if(isset($_POST['valider'])&& !empty($_GET['edit'])){
     $idmodif=$_GET['edit'];
+    // recuperer l'image
+    $image = $_FILES['photo']['name'];
+    $file = $_FILES['photo'];
+    $destination = "img/" . basename($image);
+// fonction permettant de recuperer la photo
+    $newimage = RecuperPhoto($image, $file, $destination);
+    $description = htmlspecialchars($_POST['description']);
     $nom=htmlspecialchars($_POST['nom']);
     $postnom = htmlspecialchars($_POST['postnom']);
     $prenom = htmlspecialchars($_POST['prenom']);
@@ -20,8 +27,8 @@ if(isset($_POST['valider'])&& !empty($_GET['edit'])){
     } else {
 
 if(is_numeric($telephone)){
-    $req=$connexion->prepare("UPDATE medecins SET nom=?, postnom=?, prenom=?, genre=?,adresse=?, telephone=?,pwd=? where id='$idmodif'");
-    $exe=$req->execute([$nom,$postnom,$prenom,$genre,$adresse,$telephone,$pwd]);
+    $req=$connexion->prepare("UPDATE medecins SET nom=?, postnom=?, prenom=?, genre=?,adresse=?, telephone=?,photo=?,description=?,pwd=? where id='$idmodif'");
+    $exe=$req->execute([$nom,$postnom,$prenom,$genre,$adresse,$telephone,$newimage,$description,$pwd]);
     if($exe==true){
         $msg="Modification réussie";
         $_SESSION['msg']=$msg;

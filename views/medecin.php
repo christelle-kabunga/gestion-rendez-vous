@@ -45,7 +45,7 @@
             ?>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" class="card p-3" action="<?=$url?>" method="POST">
+              <form role="form" class="card p-3" action="<?=$url?>" method="POST" enctype="multipart/form-data">
                 <div class=" row card-body">
                   <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Nom</label>
@@ -104,6 +104,22 @@
                     <input autocomplete="off" required type="text" class="form-control" placeholder="Ex: 0000000000"
                                     name="telephone" <?php if (isset($_GET['edit'])) { ?>
                                     value="<?php echo $tab['telephone']; ?> <?php }?>">
+                  </div>
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                    <label for="exampleInputEmail1">Description</label>
+                    <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: KKKKKKK" name="description"
+                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['description']; ?> <?php }?>">
+                  </div>
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                    <label for="exampleInputEmail1">Password</label>
+                    <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: KKKKKKK" name="pwd"
+                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['pwd']; ?> <?php }?>">
+                  </div>
+                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
+                    <label for="exampleInputEmail1">Photo</label>
+                    <input  autocomplete="off" required type="file" class="form-control" placeholder=""
+                                    name="photo" <?php if (isset($_GET['edit'])) { ?>
+                                    value="<?php echo $tab['photo']; ?> <?php }?>">
                   </div>
                 </div>
                 <!-- /.card-body -->
