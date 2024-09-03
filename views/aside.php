@@ -82,15 +82,7 @@ include '../connexion/connexion.php';
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item ">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Accueil
-              </p>
-            </a>
-               
-          </li>
+        
           <?php if(isset($_SESSION['admin'])) { ?>
           <li class="nav-item">
             <a href="patient.php" class="nav-link">
@@ -144,7 +136,7 @@ include '../connexion/connexion.php';
           </li>
           
           <li class="nav-item ">
-            <a href="#" class="nav-link">
+            <a href="afficher_resultat.php" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Résultat

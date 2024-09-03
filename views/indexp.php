@@ -51,21 +51,11 @@
                     <a class="nav-link" href="#contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary ml-2" href="login.html">Se Connecter</a>
+                    <a class="btn btn-primary ml-2" href="index.php">Se Connecter</a>
                 </li>
             </ul>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <div class="hero">
-        <div>
-            <h1>Bienvenue à l'Hôpital Wanamahika</h1>
-            <p>Gestion facile de vos rendez-vous médicaux</p>
-            <a href="appointment.html" class="btn btn-light btn-lg">Prenez un Rendez-vous</a>
-        </div>
-    </div>
-
     <!-- Services Section -->
     <div id="services" class="section">
         <div class="container">
@@ -73,7 +63,7 @@
             <div class="row">
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="img/docteur-écrivant-une-prescription-médicale.jpg" class="card-img-top" alt="Service 1">
+                        <img src="../img/docteur-écrivant-une-prescription-médicale.jpg" class="card-img-top" alt="Service 1">
                         <div class="card-body">
                             <h5 class="card-title">Consultation Générale</h5>
                             <p class="card-text">Obtenez des conseils médicaux complets et des diagnostics précis.</p>
@@ -82,7 +72,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="img/groupe-de-médecins-infirmières-ambulanciers-paramédicaux-poussent-gurney-civière-avec.jpg" class="card-img-top" alt="Service 2">
+                        <img src="../img/groupe-de-médecins-infirmières-ambulanciers-paramédicaux-poussent-gurney-civière-avec.jpg" class="card-img-top" alt="Service 2">
                         <div class="card-body">
                             <h5 class="card-title">Urgences</h5>
                             <p class="card-text">Soins urgents disponibles 24/7 pour les situations critiques.</p>
@@ -91,7 +81,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <div class="card">
-                        <img src="img/vue-laterale-homme-portant-blouse-laboratoire_23-2149633831.jpg" class="card-img-top" alt="Service 3">
+                        <img src="../img/vue-laterale-homme-portant-blouse-laboratoire_23-2149633831.jpg" class="card-img-top" alt="Service 3">
                         <div class="card-body">
                             <h5 class="card-title">Spécialistes</h5>
                             <p class="card-text">Consultez nos médecins spécialisés pour des soins ciblés.</p>
@@ -129,7 +119,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Hôpital XYZ. Tous droits réservés.</p>
+        <p>&copy; 2024 Hôpital Wanamahika. Tous droits réservés.</p>
     </footer>
 
     <!-- Inclure les scripts de Bootstrap -->

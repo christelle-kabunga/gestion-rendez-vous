@@ -46,44 +46,33 @@
               <!-- /.card-header -->
               <!-- form start -->
               <form role="form" class="card p-3" action="<?=$url?>" method="POST" enctype="multipart/form-data">
-                <div class=" row card-body">
-                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
-                    <label for="exampleInputEmail1">Description</label>
-                    <textarea type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: consultation" name="description" >
-                      <?php if (isset($_GET['edit'])) { ?> <?php echo $tab['description']; ?> <?php }?> </textarea>
-                  </div>
-                  <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
-                  <label>patients</label>
-                  <select class="form-control select2" required id="" name="patient" autocomplete="off" 
-                  style="width: 100%;" value="<?php echo $tab['patient']; ?> ">
-                  <?php 
-                        $req=$connexion->prepare("SELECT * from patients where supprimer=0");
-                        $req->execute();
-                        while($rendez=$req->fetch()){ 
-                            $id=$rendez['id'];
-                                    
-                            ?>
-                             <?php if (isset($_GET['edit'])) { ?>
-                                <option <?php if($id==$tab['patient']) {?> selected value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom']; ?><?php } else { ?> value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom'];} ?></option>
+    <div class="row card-body">
+        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 p-3">
+            <label for="exampleInputEmail1">Description</label>
+            <textarea type="text" autocomplete="off" required class="form-control" placeholder="Ex: consultation" name="description">
+                <?php if (isset($_GET['edit'])) { echo $tab['description']; } ?>
+            </textarea>
+        </div>
+        <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 p-3">
+            <label>Patients</label>
+            <select class="form-control select2" required name="patient" autocomplete="off" style="width: 100%;">
+                <?php 
+                    $req = $connexion->prepare("SELECT * from patients where supprimer=0");
+                    $req->execute();
+                    while($rendez = $req->fetch()){ 
+                        $id = $rendez['id'];
+                        $selected = (isset($_GET['edit']) && $id == $tab['idp']) ? 'selected' : ''; 
+                        echo "<option value='".$id."' $selected>".$rendez['nom']." ".$rendez['postnom']."</option>";
+                    }
+                ?>
+            </select>
+        </div>
+    </div>
+    <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 align-center">
+        <input type="submit" class="btn btn-dark w-100" name="valider" value="<?=$btn?>">
+    </div>
+</form>
 
-                             <?php } else {?>  
-
-                        <option value="<?php echo $rendez['id']; ?>"><?php echo  $rendez['nom']." ".$rendez['postnom']; ?></option>
-                        <?php }?>
-                        <?php 
-
-                            }
-
-                            ?>
-                  </select>
-                </div>
-                </div>
-                <!-- /.card-body -->
-                  
-                <div class="col-xl-12 col-lg-12 col-md-12 mt-10 col-sm-12 p-3 aling-center">
-                   <input type="submit" class="btn btn-dark w-100" name="valider" value="<?=$btn?>">
-                 </div>
-              </form>
             </div>
             <!-- /.card -->
             <div class="card">
