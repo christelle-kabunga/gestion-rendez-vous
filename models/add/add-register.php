@@ -1,42 +1,41 @@
-<?php
-include('../../connexion/connexion.php');
+<?php 
+include '../../connexion/connexion.php'; // Connexion à la base de données
 
-if (isset($_POST['valider'])) {
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nom = htmlspecialchars($_POST['nom']);
     $postnom = htmlspecialchars($_POST['postnom']);
     $prenom = htmlspecialchars($_POST['prenom']);
     $telephone = htmlspecialchars($_POST['telephone']);
+    $adresse = htmlspecialchars($_POST['adresse']);
     $pwd = htmlspecialchars($_POST['pwd']);
-   
-    // Check if the utilisateur already exists in the database
-    $getpatDeplicant = $connexion->prepare("SELECT * FROM utilisateur WHERE telephone=?");
-    $getpatDeplicant->execute([$telephone]);
-    $tab = $getpatDeplicant->fetch();
+    $id_medecin = htmlspecialchars($_GET['id']); // Récupérer l'ID du médecin depuis l'URL
+    $id_medecin=htmlspecialchars($_POST["id_medecin"]);
 
-    if ($tab > 0) {
-        $_SESSION['msg'] = 'Ce utilisateur existe déjà dans la base de données'; // This variable receives the message to notify the user of the operation they have already done
-        header("location:../../views/register.php");
-    } else {
-        // Verify the validity of the phone number
-        if (is_numeric($telephone)) {
-            $req = $connexion->prepare("INSERT INTO utilisateur( id,`nom`, `postnom`, `prenom`, `telephone`, `pwd`) VALUES (?,?,?,?,?,?)");
-            $resultat = $req->execute(['NULL', $nom, $postnom, $prenom, $telephone, $pwd]);
+    try {
+        // Début de la transaction
+        $connexion->beginTransaction();
 
-            // If yes, the result variable will return true, so there was a registration
-            if ($resultat == true) {
-                $_SESSION['msg'] = "L'enregistrement a réussi"; // This line allows you to add a message to the session When there has been a registration
-                header("location:../../views/register.php");
-            } else {
-                $_SESSION['msg'] = "Echec d'enregistrement"; // This line allows you to add a message to the session When there has been a registration
-                header("location:../../views/register.php");
-            }
-        } else {
-            $_SESSION['msg'] = "Le numero de téléphone ne doit pas être une chaîne de caractère";
-            header("location:../../views/register.php");
-        }
+        // Insertion dans la table patients
+        $stmt = $connexion->prepare("INSERT INTO patients (nom, postnom, prenom, genre, telephone, adresse, pwd, supprimer) VALUES (?, ?, ?, 'Masculin', ?, '', ?, 0)");
+        $stmt->execute([$nom, $postnom, $prenom, $telephone,$adresse, $pwd]);
+
+        // Récupérer l'ID du patient inséré
+        $id_patient = $connexion->lastInsertId();
+
+        // Insertion dans la table rendez_vous
+        $stmt_rdv = $connexion->prepare("INSERT INTO rendez_vous (patient, medecin, date, etat, supprimer) VALUES (?, ?, NOW(), 0, 0)");
+        $stmt_rdv->execute([$id_patient, $id_medecin]);
+
+        // Valider la transaction
+        $connexion->commit();
+
+        $_SESSION['msg'] = "Inscription réussie et rendez-vous pris.";
+        header("Location: ../../views/inscription.php");
+    } catch (Exception $e) {
+        // En cas d'erreur, annuler la transaction
+        $connexion->rollBack();
+        $_SESSION['msg'] = "Une erreur s'est produite: " . $e->getMessage();
+        header("Location: error.php");
     }
-} else {
-    // This line allows you to redirect the user when they have not clicked the button that is used to save
-    header("location:../../views/register.php");
 }
+?>

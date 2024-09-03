@@ -14,6 +14,32 @@ require_once('../models/select/select-information.php'); // Appel de la page pou
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+     <!-- Navigation -->
+     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Hôpital wanamahika</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="indexp.php">Accueil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="indexp.php">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="indexp.php">À propos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="indexp.php">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-primary ml-2" href="index.php">Se connecter</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
     <div class="container my-4">
         <!-- Content Header (Page header) -->
         <div class="text-center mb-4">
@@ -28,7 +54,7 @@ require_once('../models/select/select-information.php'); // Appel de la page pou
             $req->execute();
             while ($donne = $req->fetch()) { ?>
             <!-- Card d'informations du médecin -->
-            <div class="col-md-6 mb-4"> <!-- Chaque carte prend la moitié de la largeur sur les écrans moyens et plus grands -->
+            <div class="col-md-6 mb-4" id="login"> <!-- Chaque carte prend la moitié de la largeur sur les écrans moyens et plus grands -->
                 <div class="card">
                     <img src="../models/add/img/<?php echo htmlspecialchars($donne['photo']); ?>" class="card-img-top" alt="Photo du médecin">
                     <div class="card-body">
