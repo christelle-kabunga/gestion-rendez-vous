@@ -65,7 +65,7 @@ require_once('../models/select/select-prescription.php');
 
                                     <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 p-3">
                                         <label for="description">Medicament</label>
-                                        <input class="form-control" name="medicament" required <?php if (isset($_GET['edit'])) { echo htmlspecialchars($tab['medicament']); } ?>>
+                                        <input class="form-control" name="medicament" required value=" <?php if (isset($_GET['edit'])) { echo htmlspecialchars($tab['medicament']); } ?>">
                                     </div>
 
                                     <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 p-3">
@@ -92,7 +92,7 @@ require_once('../models/select/select-prescription.php');
                                     </div>
                                     <div class="form-group col-xl-6 col-lg-6 col-md-6 col-sm-6 p-3">
                                         <label>Resultat</label>
-                                        <input type="text" class="form-control" name="resultat" value="<?php if (isset($_GET['edit'])) { echo htmlspecialchars($tab['resulat']); } ?>" required>
+                                        <input type="text" class="form-control" name="resultat" value="<?php if (isset($_GET['edit'])) { echo htmlspecialchars($tab['resultat']); } ?>" required>
                                     </div>
                                 </div>
 

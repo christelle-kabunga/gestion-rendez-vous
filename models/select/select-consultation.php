@@ -1,14 +1,18 @@
 <?php
+
+
+// Vérifiez si un médecin est connecté
+if (isset($_SESSION['medecin'])) {
+    $idm = $_SESSION['medecin'];  // Récupération de l'ID du médecin connecté
+} else {
+    header("Location: login.php");  // Redirection si aucun médecin n'est connecté
+    exit();
+}
     if (isset($_GET['edit']) && !empty($_GET['edit'])){
         $id = $_GET['edit'];
-        $getDataMod = $connexion->prepare("SELECT consultation.description, consultation.id, rendez_vous.patient as idp, patients.nom as nompatient, patients.postnom as postnompatient, medecins.nom as nommedecin, medecins.postnom as postnommedecin, rendez_vous.medecin as idm, consultation.rendez 
-        FROM consultation 
-        JOIN patients ON rendez_vous.patient = patients.id 
-        JOIN medecins ON medecins.id = rendez_vous.medecin 
-        JOIN rendez_vous ON rendez_vous.id = consultation.rendez 
-        WHERE consultation.supprimer = 0 AND patients.supprimer = 0 AND medecins.supprimer = 0 AND rendez_vous.supprimer = 0 AND consultation.id = ?");
+        $getDataMod=$connexion->prepare("SELECT * FROM consultation WHERE id=?");
         $getDataMod->execute([$id]);
-        $tab = $getDataMod->fetch();
+        $tab=$getDataMod->fetch();
     
         $url = "../models/updat/up-consultation-post.php?edit=".$id;
         $btn = "Modifier";
@@ -19,7 +23,12 @@
         $title = "Ajouter consultation";
     }
     
-    // Fetch all consultations if no search term is provided
-    $getData = $connexion->prepare("SELECT * FROM consultation WHERE supprimer = ?");
-    $getData->execute([0]);
-    
+                // Requête pour récupérer les consultations du médecin connecté
+            $getData = $connexion->prepare("
+            SELECT consultation.id, consultation.date, consultation.description
+            FROM consultation
+            WHERE consultation.supprimer = 0
+            AND consultation.medecin = ?
+            ");
+            $getData->execute([$idm]);  // Exécution de la requête avec l'ID du médecin
+                

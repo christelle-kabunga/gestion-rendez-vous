@@ -2,6 +2,10 @@
     include '../connexion/connexion.php';//Se connecter à la BD
     #Appel de la page qui permet de faire les affichages
     require_once('../models/select/select-consultation.php');
+
+ 
+include '../connexion/connexion.php'; // Connexion à la BD
+
 ?> 
 
 <!DOCTYPE html>
