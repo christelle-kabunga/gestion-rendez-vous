@@ -11,6 +11,7 @@ if (isset($_POST['valider'])) {
     $duree = htmlspecialchars($_POST['duree']);
     $consultation = $_POST['consultation'];
     $resultat = $_POST['resultat'];
+    $medecin = $_SESSION['medecin'];  // ID du médecin connecté
 
     // Vérifier si la prescription existe déjà
     $getPrescription = $connexion->prepare("SELECT * FROM prescription WHERE description=? AND patient=? AND supprimer=0");

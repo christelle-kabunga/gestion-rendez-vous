@@ -1,4 +1,5 @@
 <?php
+session_start();
 include('../connexion/connexion.php');
 
 if (isset($_POST['connect'])) {
@@ -9,14 +10,15 @@ if (isset($_POST['connect'])) {
     $recupmedecin = $connexion->prepare("SELECT * FROM medecins WHERE nom = ? AND `pwd` = ?");
     $recupmedecin->execute([$username, $pwd]);
 
-    // Vérification des informations de connexion pour l'patient
+    // Vérification des informations de connexion pour le patient
     $recupens = $connexion->prepare("SELECT * FROM patients WHERE nom = ? AND `pwd` = ?");
     $recupens->execute([$username, $pwd]);
 
-    // Vérification des informations de connexion pour le admin
+    // Vérification des informations de connexion pour l'admin
     $recupadmin = $connexion->prepare("SELECT * FROM admin WHERE nom = ? AND `pwd` = ?");
     $recupadmin->execute([$username, $pwd]);
 
+    // Si un médecin est trouvé
     if ($medecin = $recupmedecin->fetch()) {
         $_SESSION["medecin"] = $medecin['id'];
         $_SESSION["noms"] = $medecin['nom'] . ' ' . $medecin['postnom'];
@@ -27,6 +29,8 @@ if (isset($_POST['connect'])) {
         $_SESSION['postnom'] = $medecin['postnom'];
         header("Location: ../views/consultation.php");
         exit();
+
+    // Si un patient est trouvé
     } elseif ($ens = $recupens->fetch()) {
         $_SESSION["patient"] = $ens['id'];
         $_SESSION["noms"] = $ens['nom'] . ' ' . $ens['postnom'];
@@ -36,8 +40,10 @@ if (isset($_POST['connect'])) {
         $_SESSION['genre'] = $ens['genre'];
         $_SESSION['postnom'] = $ens['postnom'];
         $_SESSION['patient_role'] = "patient";
-        header("Location: ../views/resultat.php");
+        header("Location: ../views/resultatp.php");
         exit();
+
+    // Si un admin est trouvé
     } elseif ($admin = $recupadmin->fetch()) {
         $_SESSION["admin"] = $admin['id'];
         $_SESSION["noms"] = $admin['nom'] . ' ' . $admin['postnom'];
@@ -49,9 +55,13 @@ if (isset($_POST['connect'])) {
         $_SESSION['role'] = "admin";
         header("Location: ../views/information.php");
         exit();
+
+    // Si aucune correspondance n'est trouvée
     } else {
         $_SESSION['msg'] = "Nom d'utilisateur ou mot de passe incorrect";
-        header("Location: ../views/index.php");
+        
+        // Redirection vers la page info.php pour les patients sans compte
+        header("Location: ../views/info.php");
         exit();
     }
 }

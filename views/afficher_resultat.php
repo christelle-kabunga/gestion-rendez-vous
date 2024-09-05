@@ -1,5 +1,15 @@
 <?php
+session_start();
 include '../connexion/connexion.php';  // Inclusion de la connexion à la base de données
+
+// Vérifier si le médecin est connecté
+if(isset($_SESSION["medecin"])) {
+    $idm = $_SESSION['medecin'];  // ID du médecin connecté
+} else {
+    // Si aucun médecin n'est connecté, redirection vers la page de connexion
+    header("Location: login.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -45,7 +55,7 @@ include '../connexion/connexion.php';  // Inclusion de la connexion à la base d
                                     </thead>
                                     <tbody>
                                         <?php
-                                        // Requête pour récupérer toutes les prescriptions et les détails des patients
+                                        // Requête pour récupérer les prescriptions associées au médecin connecté via la table rendez_vous
                                         $query = $connexion->prepare("
                                             SELECT prescription.id AS prescription_id, 
                                                    patients.nom AS nom_patient, 
@@ -53,9 +63,12 @@ include '../connexion/connexion.php';  // Inclusion de la connexion à la base d
                                                    prescription.date AS date_prescription
                                             FROM prescription
                                             JOIN patients ON prescription.patient = patients.id
-                                            WHERE prescription.supprimer = 0 AND patients.supprimer = 0
+                                            JOIN rendez_vous ON prescription.patient = rendez_vous.patient
+                                            WHERE prescription.supprimer = 0 
+                                              AND patients.supprimer = 0
+                                              AND rendez_vous.medecin = ?  -- Filtrer par l'ID du médecin connecté
                                         ");
-                                        $query->execute();
+                                        $query->execute([$idm]);  // Passer l'ID du médecin connecté dans la requête
 
                                         $n = 0;
                                         while ($row = $query->fetch()) {

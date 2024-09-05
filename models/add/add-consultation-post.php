@@ -4,6 +4,7 @@ include('../../connexion/connexion.php');
 if (isset($_POST['valider'])) {
     $description = htmlspecialchars($_POST['description']);
     $patientId = htmlspecialchars($_POST['patient']);
+    $medecin = $_SESSION['medecin'];  // ID du médecin connecté
     $date = date("Y-m-d");
 
     // Check if the consultation already exists in the database
@@ -16,8 +17,8 @@ if (isset($_POST['valider'])) {
         header("location:../../views/consultation.php");
     } else {
         // Insert the new consultation with the patient ID
-        $req = $connexion->prepare("INSERT INTO consultation (id, description, date, patient) VALUES (NULL, ?, ?, ?)");
-        $resultat = $req->execute([$description, $date, $patientId]);
+        $req = $connexion->prepare("INSERT INTO consultation (id, description, date, patient,medecin) VALUES (NULL, ?, ?, ?,?)");
+        $resultat = $req->execute([$description, $date, $patientId,$medecin]);
 
         if ($resultat == true) {
             $_SESSION['msg'] = "Enregistrement réussie";
