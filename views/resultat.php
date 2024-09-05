@@ -31,7 +31,7 @@ if (isset($_GET['prescription_id']) && !empty($_GET['prescription_id'])) {
     if ($result) {
         // Début du rapport avec marge en haut
         echo "<div style='max-width: 800px; margin: 40px auto; padding: 20px; border: 1px solid #ddd; background-color: #f9f9f9;'>";
-        echo "<h2 style='text-align: center; color: #333;'>Résultats de la Prescription</h2>";
+        echo "<h2 style='text-align: center; color: #333;'>Résultats du patient</h2>";
         echo "<hr>";
 
         // Informations sur le patient

@@ -49,18 +49,29 @@ if (isset($_GET['id'])) {
                         <?php } ?>
                         <div class="col-12 mb-3">
                             <label for="">Nom</label>
-                            <input type="text" class="form-control" placeholder="Ex: Kabunga" name="nom" required>
+                            <input type="text" class="form-control" placeholder="Ex: Dato" name="nom" required>
                             <input type="hidden" name="id_medecin" value="<?php echo htmlspecialchars($id_medecin); ?>">
                         </div>
                     
                         <div class="col-12 mb-3">
                             <label for="">Postnom</label>
-                            <input type="text" class="form-control" placeholder="Ex: Kite" name="postnom" required>
+                            <input type="text" class="form-control" placeholder="Ex: agioni" name="postnom" required>
                         </div>
                         <div class="col-12 mb-3">
                             <label for="">Prénom</label>
-                            <input type="text" class="form-control" placeholder="Ex: Chris" name="prenom" required>
+                            <input type="text" class="form-control" placeholder="Ex: aimerance" name="prenom" required>
                         </div>
+                        <div class="col-12 mb-3">
+                            <label>Genre</label>
+                            <select class="form-control select2" required id="" name="genre" autocomplete="off" style="width: 100%;">
+                            
+                                <option value="Masculin" Selected>Masculin</option>
+                                            
+                                                        <option value="" desabled>Choisir un genre</option>
+                                                        <option value="Masculin">Masculin</option>
+                                                        <option value="Feminin">Feminin</option>
+                            </select>
+                            </div>
                         <div class="col-12 mb-3">
                             <label for="">Téléphone</label>
                             <input type="text" class="form-control" placeholder="Ex: 000000000" name="telephone" required>

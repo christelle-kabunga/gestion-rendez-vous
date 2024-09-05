@@ -163,10 +163,10 @@
                   <td><?=$recup["telephone"];?></td>
                   <td>
                   <a href='medecin.php?edit=<?=$recup['id'] ?>' class="btn btn-info btn-sm "><i
-                    class="bi bi-pencil-square"></i></a>
+                  class="fas fa-edit"></i></a>
                   <a onclick=" return confirm('Voulez-vous vraiment supprimer ?')"
                   href='../models/delete/del-medecin-post.php?idSup=<?=$recup['id'] ?>'
-                    class="btn btn-danger btn-sm "><i class="bi bi-trash3-fill"></i></a>                            
+                    class="btn btn-danger btn-sm "><i class="fas fa-trash"></i></a>                            
                   </td>
                 </tr>
                 <?php }?> 

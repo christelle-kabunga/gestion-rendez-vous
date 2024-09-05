@@ -26,6 +26,7 @@ if (isset($_POST['connect'])) {
         $_SESSION['genre'] = $medecin['genre'];
         $_SESSION['postnom'] = $medecin['postnom'];
         header("Location: ../views/consultation.php");
+        exit();
     } elseif ($ens = $recupens->fetch()) {
         $_SESSION["patient"] = $ens['id'];
         $_SESSION["noms"] = $ens['nom'] . ' ' . $ens['postnom'];
@@ -35,7 +36,8 @@ if (isset($_POST['connect'])) {
         $_SESSION['genre'] = $ens['genre'];
         $_SESSION['postnom'] = $ens['postnom'];
         $_SESSION['patient_role'] = "patient";
-        header("Location: ../views/info.php");
+        header("Location: ../views/resultat.php");
+        exit();
     } elseif ($admin = $recupadmin->fetch()) {
         $_SESSION["admin"] = $admin['id'];
         $_SESSION["noms"] = $admin['nom'] . ' ' . $admin['postnom'];
@@ -46,9 +48,11 @@ if (isset($_POST['connect'])) {
         $_SESSION['postnom'] = $admin['postnom'];
         $_SESSION['role'] = "admin";
         header("Location: ../views/information.php");
+        exit();
     } else {
         $_SESSION['msg'] = "Nom d'utilisateur ou mot de passe incorrect";
-        header("Location: index.php");
+        header("Location: ../views/index.php");
+        exit();
     }
 }
 ?>

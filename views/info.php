@@ -16,7 +16,7 @@ require_once('../models/select/select-information.php'); // Appel de la page pou
 <body>
      <!-- Navigation -->
      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Hôpital wanamahika</a>
+        <a class="navbar-brand" href="#">Centre Hostipitalier wanamahika</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -35,7 +35,7 @@ require_once('../models/select/select-information.php'); // Appel de la page pou
                     <a class="nav-link" href="indexp.php">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary ml-2" href="index.php">Se connecter</a>
+                    <a class="btn btn-primary ml-2" href="../models/log-out.php">Se déconnecter</a>
                 </li>
             </ul>
         </div>

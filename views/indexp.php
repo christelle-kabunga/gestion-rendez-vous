@@ -32,7 +32,7 @@
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Hôpital wanamahika</a>
+        <a class="navbar-brand" href="#">Centre Hostipitalier wanamahika</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -119,7 +119,7 @@
 
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
-        <p>&copy; 2024 Hôpital Wanamahika. Tous droits réservés.</p>
+        <p>&copy; 2024 Centre Hostipitalier wanamahika. Tous droits réservés.</p>
     </footer>
 
     <!-- Inclure les scripts de Bootstrap -->

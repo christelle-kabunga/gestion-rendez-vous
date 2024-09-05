@@ -25,18 +25,18 @@ body {
             <div class="col-12 mb-3">
 
                 <label for="">username</label>
-                <input type="text" class="form-control" placeholder="Ex: kabunga" name="username">
+                <input type="text" class="form-control" placeholder="Ex: Alice" name="username" required>
             </div>
             <div class="col-12 mb-3">
                 <label for="">Mot de passe</label>
-                <input type="password" class="form-control" placeholder="Ex: *****" name="pwd">
+                <input type="password" class="form-control" placeholder="Ex: *****" name="pwd" required>
             </div>
             <?php if(isset($_SESSION['msg']) && $_SESSION['msg']!=""){?>
             <div class="col-12 ">
 
                 <div class="alert alert-danger text-center"><?php  echo $_SESSION['msg'];?></div>
             </div>
-            <?php } ?>
+            <?php }   unset($_SESSION['msg']);?>
             <div class="col-12 mb-3">
                 <input type="submit" class="form-control btn-dark btn" name="connect" value="Se connecter">
             </div>

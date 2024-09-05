@@ -143,6 +143,25 @@ include '../connexion/connexion.php';
               </p>
             </a>
           </li>
+          <li class="nav-item ">
+            <a href="valider.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Valider rendez-vous
+              </p>
+            </a>
+          </li>
+          <?php } ?>
+
+          <?php if(isset($_SESSION['patient'])) { ?>
+            <li class="nav-item ">
+            <a href="afficher_resultat.php" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Résultat
+              </p>
+            </a>
+          </li>
           <?php } ?>
         </ul>
       </nav>

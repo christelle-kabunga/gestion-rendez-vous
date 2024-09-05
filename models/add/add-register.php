@@ -7,6 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $prenom = htmlspecialchars($_POST['prenom']);
     $telephone = htmlspecialchars($_POST['telephone']);
     $adresse = htmlspecialchars($_POST['adresse']);
+    $genre = htmlspecialchars($_POST['genre']);
     $pwd = htmlspecialchars($_POST['pwd']);
     $id_medecin = htmlspecialchars($_GET['id']); // Récupérer l'ID du médecin depuis l'URL
     $id_medecin=htmlspecialchars($_POST["id_medecin"]);
@@ -16,8 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $connexion->beginTransaction();
 
         // Insertion dans la table patients
-        $stmt = $connexion->prepare("INSERT INTO patients (nom, postnom, prenom, genre, telephone, adresse, pwd, supprimer) VALUES (?, ?, ?, 'Masculin', ?, '', ?, 0)");
-        $stmt->execute([$nom, $postnom, $prenom, $telephone,$adresse, $pwd]);
+        $stmt = $connexion->prepare("INSERT INTO patients (nom, postnom, prenom, genre, telephone, adresse, pwd, supprimer) VALUES (?, ?, ?,?,?,?,?)");
+        $stmt->execute([$nom, $postnom, $prenom,$genre, $telephone,$adresse, $pwd,0]);
 
         // Récupérer l'ID du patient inséré
         $id_patient = $connexion->lastInsertId();
@@ -35,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // En cas d'erreur, annuler la transaction
         $connexion->rollBack();
         $_SESSION['msg'] = "Une erreur s'est produite: " . $e->getMessage();
-        header("Location: error.php");
+        header("Location: ../../views/inscription.php");
     }
 }
 ?>

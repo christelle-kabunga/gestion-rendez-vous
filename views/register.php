@@ -1,4 +1,3 @@
-
 <?php
  include '../connexion/connexion.php';//Se connecter à la BD
  ?>
@@ -31,26 +30,37 @@ body {
             <div class="col-12 mb-3">
 
                 <label for="">nom</label>
-                <input type="text" class="form-control" placeholder="Ex: kabunga" name="nom">
+                <input type="text" class="form-control" placeholder="Ex: dato" name="nom" required>
             </div>
              <div class="col-12 mb-3">
 
                 <label for="">postnom</label>
-                <input type="text" class="form-control" placeholder="Ex: kite" name="postnom">
+                <input type="text" class="form-control" placeholder="Ex: agioni" name="postnom" required>
             </div>
             <div class="col-12 mb-3">
 
             <label for="">prenom</label>
-            <input type="text" class="form-control" placeholder="Ex: chris" name="prenom">
+            <input type="text" class="form-control" placeholder="Ex: aimerance" name="prenom" required>
             </div>
+            <div class="col-12 mb-3">
+                  <label>Genre</label>
+                  <select class="form-control select2" required id="" name="genre" autocomplete="off" style="width: 100%;">
+                 
+                    <option value="Masculin" Selected>Masculin</option>
+                                   
+                                            <option value="" desabled>Choisir un genre</option>
+                                            <option value="Masculin">Masculin</option>
+                                            <option value="Feminin">Feminin</option>
+                  </select>
+                </div>
             <div class="col-12 mb-3">
 
             <label for="">telephone</label>
-            <input type="text" class="form-control" placeholder="Ex: 000000000" name="telephone">
+            <input type="text" class="form-control" placeholder="Ex: 000000000" name="telephone" required>
             </div>
             <div class="col-12 mb-3">
                 <label for="">Mot de passe</label>
-                <input type="password" class="form-control" placeholder="Ex: *****" name="pwd">
+                <input type="password" class="form-control" placeholder="Ex: *****" name="pwd" required>
             </div>
             <div class="col-12 mb-3">
                 <input type="submit" class="form-control btn-dark btn" name="valider" value="S'enregistrer">

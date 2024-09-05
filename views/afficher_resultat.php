@@ -8,7 +8,7 @@ include '../connexion/connexion.php';  // Inclusion de la connexion à la base d
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php require_once('style.php'); ?>  <!-- Inclusion des styles -->
-    <title>Résultats des Prescriptions</title>
+    <title>Résultats des Patients</title>
 </head>
 <body>
     <!-- Appel du menu -->
@@ -20,7 +20,7 @@ include '../connexion/connexion.php';  // Inclusion de la connexion à la base d
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-12">
-                        <h1>Résultats des Prescriptions</h1>
+                        <h1>Résultats des Patients</h1>
                     </div>
                 </div>
             </div>
