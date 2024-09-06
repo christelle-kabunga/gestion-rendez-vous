@@ -24,6 +24,6 @@ if (isset($_GET['edit']) && !empty($_GET['edit'])) {
 $getData = $connexion->prepare("SELECT prescription.*, patients.nom AS nom_patient, patients.postnom AS postnom_patient 
 FROM prescription 
 JOIN patients ON prescription.patient = patients.id 
-WHERE prescription.supprimer = 0 and prescription.medecin=?AND patients.supprimer = 0");
+WHERE prescription.supprimer = 0 and prescription.medecin=? AND patients.supprimer = 0");
 $getData->execute([$idm]);
 ?>

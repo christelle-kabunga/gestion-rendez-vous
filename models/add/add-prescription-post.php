@@ -23,8 +23,8 @@ if (isset($_POST['valider'])) {
         header("location:../../views/prescription.php");
     } else {
         // Insérer la nouvelle prescription
-        $req = $connexion->prepare("INSERT INTO prescription (description, date, patient,consultation, medicament, dosage, duree,resultat) VALUES (?, ?, ?, ?, ?, ?,?,?)");
-        $requete = $req->execute([$description, $date, $patientId,$consultation, $medicamentId, $dosage, $duree,$resultat]);
+        $req = $connexion->prepare("INSERT INTO prescription (description, date, patient,consultation, medicament, dosage, duree,resultat,medecin) VALUES (?, ?, ?, ?, ?, ?,?,?,?)");
+        $requete = $req->execute([$description, $date, $patientId,$consultation, $medicamentId, $dosage, $duree,$resultat,$medecin]);
 
         if ($requete) {
             $_SESSION['msg'] = "Enregistrement réussi";

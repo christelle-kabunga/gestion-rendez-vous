@@ -50,18 +50,18 @@
                   <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Titre</label>
                     <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: information" name="titre"
-                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['nom']; ?> <?php }?>">
+                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['titre']; ?> <?php }?>">
                   </div>
                   <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Contenu</label>
                     <input type="text"  autocomplete="off" required type="text" class="form-control" placeholder="Ex: KKKKKKK" name="contenu"
-                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['nom']; ?> <?php }?>">
+                    <?php if (isset($_GET['edit'])) { ?> value="<?php echo $tab['contenu']; ?> <?php }?>">
                   </div>
                   <div class="form-group col-xl-6 col-lg-6 col-md-6  col-sm-6 p-3">
                     <label for="exampleInputEmail1">Photo</label>
                     <input  autocomplete="off" required type="file" class="form-control" placeholder=""
                                     name="photo" <?php if (isset($_GET['edit'])) { ?>
-                                    value="<?php echo $tab['postnom']; ?> <?php }?>">
+                                    value="<?php echo $tab['photo']; ?> <?php }?>">
                   </div>
                  
                 </div>
