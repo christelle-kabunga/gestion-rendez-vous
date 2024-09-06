@@ -1,6 +1,6 @@
 <?php 
 include("../../connexion/connexion.php");
-
+require_once ('../../fonctions/fonctions.php');
 if(isset($_POST['valider'])&& !empty($_GET['edit'])){
     $idmodif=$_GET['edit'];
   // recuperer l'image
